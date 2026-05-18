@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Product
 from .forms import ProductForm
+from .models import Product, Category, Supplier
+from .forms import CategoryForm
+from .forms import SupplierForm
+from .forms import StockForm
 
 
 def product_list(request):
@@ -50,3 +54,88 @@ def delete_product(request, id):
     product.delete()
 
     return redirect('/')
+def dashboard(request):
+
+    total_products = Product.objects.count()
+    total_categories = Category.objects.count()
+    total_suppliers = Supplier.objects.count()
+
+    return render(request, 'dashboard.html', {
+        'total_products': total_products,
+        'total_categories': total_categories,
+        'total_suppliers': total_suppliers,
+    })
+def category_list(request):
+
+    categories = Category.objects.all()
+
+    if request.method == 'POST':
+
+        form = CategoryForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/categories')
+
+    else:
+        form = CategoryForm()
+
+    return render(request, 'categories.html', {
+        'categories': categories,
+        'form': form
+    })
+def supplier_list(request):
+
+    suppliers = Supplier.objects.all()
+
+    if request.method == 'POST':
+
+        form = SupplierForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/suppliers')
+
+    else:
+        form = SupplierForm()
+
+    return render(request, 'suppliers.html',  {
+        'suppliers': suppliers,
+        'form': form
+    })
+def stock_management(request):
+
+    message = ''
+
+    if request.method == 'POST':
+
+        form = StockForm(request.POST)
+
+        if form.is_valid():
+
+            product = form.cleaned_data['product']
+            quantity = form.cleaned_data['quantity']
+            action = form.cleaned_data['action']
+
+            if action == 'IN':
+                product.quantity += quantity
+
+            elif action == 'OUT':
+
+                if product.quantity >= quantity:
+                    product.quantity -= quantity
+                else:
+                    message = 'Not enough stock'
+
+            product.save()
+
+            if message == '':
+                message = 'Stock updated successfully'
+
+    else:
+        form = StockForm()
+
+    return render(request, 'stock.html', {
+        'form': form,
+        'message': message
+    })
