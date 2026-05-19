@@ -58,7 +58,7 @@ It also includes an admin dashboard with authentication system for secure manage
 
 Username: teacher
 
-Password: Teacher123
+Password: TeacherAdmin2026!
 
 ---
 
