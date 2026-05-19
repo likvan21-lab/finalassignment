@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.urls import path, include
 
 urlpatterns = [
     path('', views.product_list, name='product_list'),
@@ -10,5 +11,7 @@ urlpatterns = [
     path('categories/', views.category_list, name='categories'),
     path('suppliers/', views.supplier_list, name='suppliers'),
     path('stock/', views.stock_management, name='stock'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', views.register, name='register'),
     
 ]

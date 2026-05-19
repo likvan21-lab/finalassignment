@@ -5,6 +5,9 @@ from .models import Product, Category, Supplier
 from .forms import CategoryForm
 from .forms import SupplierForm
 from .forms import StockForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
 
 
 def product_list(request):
@@ -54,6 +57,7 @@ def delete_product(request, id):
     product.delete()
 
     return redirect('/')
+@login_required
 def dashboard(request):
 
     total_products = Product.objects.count()
@@ -65,6 +69,7 @@ def dashboard(request):
         'total_categories': total_categories,
         'total_suppliers': total_suppliers,
     })
+@login_required
 def category_list(request):
 
     categories = Category.objects.all()
@@ -84,6 +89,7 @@ def category_list(request):
         'categories': categories,
         'form': form
     })
+@login_required
 def supplier_list(request):
 
     suppliers = Supplier.objects.all()
@@ -103,6 +109,7 @@ def supplier_list(request):
         'suppliers': suppliers,
         'form': form
     })
+@login_required
 def stock_management(request):
 
     message = ''
@@ -138,4 +145,20 @@ def stock_management(request):
     return render(request, 'stock.html', {
         'form': form,
         'message': message
+    })
+def register(request):
+
+    if request.method == 'POST':
+
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/login/')
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/register.html', {
+        'form': form
     })
