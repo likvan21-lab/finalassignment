@@ -9,97 +9,196 @@
     />
 
     <style>
-      body {
-        background: #f4f6f9;
+
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+      *{
+        font-family: 'Poppins', sans-serif;
       }
 
-      .sidebar {
-        width: 240px;
+      body{
+        background: linear-gradient(to right, #eef2f3, #dfe9f3);
+      }
+
+      .sidebar{
+        width: 250px;
         height: 100vh;
-        background: #212529;
+        background: linear-gradient(180deg, #111827, #1f2937);
         position: fixed;
-        padding-top: 20px;
+        padding-top: 25px;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.1);
       }
 
-      .sidebar h3 {
+      .sidebar h3{
         color: white;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        font-weight: 600;
+        letter-spacing: 1px;
       }
 
-      .sidebar a {
-        display: block;
-        color: #adb5bd;
-        padding: 15px 20px;
+      .sidebar a{
+        display: flex;
+        align-items: center;
+        color: #d1d5db;
+        padding: 14px 22px;
+        margin: 8px 12px;
+        border-radius: 12px;
         text-decoration: none;
+        transition: 0.3s;
+        font-size: 15px;
       }
 
-      .sidebar a:hover {
-        background: #343a40;
+      .sidebar a:hover{
+        background: rgba(255,255,255,0.1);
         color: white;
+        transform: translateX(5px);
       }
 
-      .main {
-        margin-left: 240px;
-        padding: 20px;
+      .main{
+        margin-left: 250px;
+        padding: 30px;
       }
 
-      .card-box {
+      .main h2{
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #111827;
+      }
+
+      .card-box{
         border: none;
-        border-radius: 15px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
       }
+
+      .card-box:hover{
+        transform: translateY(-5px);
+      }
+
+      .card-body{
+        padding: 30px;
+      }
+
+      .card-body h5{
+        font-size: 18px;
+        opacity: 0.9;
+      }
+
+      .card-body h2{
+        font-size: 40px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .btn{
+        border-radius: 10px !important;
+        padding: 10px 18px;
+        font-weight: 500;
+      }
+
+      form button{
+        width: 90%;
+        margin: 20px auto;
+        display: block;
+      }
+
     </style>
   </head>
 
   <body>
+
     <!-- Sidebar -->
     <div class="sidebar">
+
       <h3>Inventory</h3>
 
-      <a href="/dashboard/">📊 Dashboard</a>
-      <a href="/">📦 Products</a>
-      <a href="/categories/">🏷 Categories</a>
-      <a href="/suppliers/">🚚 Suppliers</a>
-      <a href="/stock/">📈 Stock</a>
-      <a href="/accounts/logout/" class="btn btn-danger"> Logout </a>
+      <a href="/dashboard/">Dashboard</a>
+
+      <a href="/"> Products</a>
+
+      <a href="/categories/">Categories</a>
+
+      <a href="/suppliers/"> Suppliers</a>
+
+      <a href="/stock/"> Stock</a>
+
+      <a href="/register/" class="btn btn-primary mt-4">
+        Make Admin Account
+      </a>
+
+      <form action="/accounts/logout/" method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">
+          Logout
+        </button>
+
+      </form>
+
     </div>
 
     <!-- Main -->
     <div class="main">
+
       <h2 class="mb-4">Admin Dashboard</h2>
 
       <div class="row">
-        <div class="col-md-4">
+
+        <div class="col-md-4 mb-4">
+
           <div class="card card-box bg-primary text-white">
+
             <div class="card-body">
+
               <h5>Total Products</h5>
 
               <h2>{{ total_products }}</h2>
+
             </div>
+
           </div>
+
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
+
           <div class="card card-box bg-success text-white">
+
             <div class="card-body">
+
               <h5>Total Categories</h5>
 
               <h2>{{ total_categories }}</h2>
+
             </div>
+
           </div>
+
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
+
           <div class="card card-box bg-dark text-white">
+
             <div class="card-body">
+
               <h5>Total Suppliers</h5>
 
               <h2>{{ total_suppliers }}</h2>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </body>
 </html>

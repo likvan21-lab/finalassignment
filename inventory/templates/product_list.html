@@ -1,259 +1,241 @@
 <!doctype html>
 <html lang="km">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>បញ្ជីផលិតផល</title>
 
-    
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-    
     <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
 
-    
     <link
-        href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
+      body {
+        background: wheat;
+        font-family: "Kantumruy Pro", sans-serif;
+      }
 
-        body{
-            background: wheat;
-            font-family: 'Kantumruy Pro', sans-serif;
-        }
+      .main-card {
+        background: #9e9ea3;
+        border: none;
+        border-radius: 24px;
+        overflow: hidden;
+      }
 
-        .main-card{
-            background: #9e9ea3;
-            border: none;
-            border-radius: 24px;
-            overflow: hidden;
-        }
+      .header-box {
+        background: linear-gradient(135deg, gold, grey);
+        color: black;
+        border-radius: 24px;
+        padding: 30px;
+      }
 
-        .header-box{
-            background: linear-gradient(135deg, gold, grey);
-            color: black;
-            border-radius: 24px;
-            padding: 30px;
-        }
+      .table thead {
+        background: grey;
+      }
 
-        .table thead{
-            background: grey;
-            
-        }
+      .table th {
+        font-weight: 600;
+        color: black;
+      }
 
-        .table th{
-            font-weight: 600;
-            color: black;
-        }
+      .table td {
+        vertical-align: middle;
+      }
 
-        .table td{
-            vertical-align: middle;
-        }
+      .btn-custom {
+        border-radius: 12px;
+        padding: 8px 16px;
+      }
 
-        .btn-custom{
-            border-radius: 12px;
-            padding: 8px 16px;
-        }
+      .badge-qty {
+        background: #dbeafe;
+        color: #c51e18;
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-weight: bold;
+      }
 
-        .badge-qty{
-            background: #dbeafe;
-            color: #c51e18;
-            padding: 8px 14px;
-            border-radius: 30px;
-            font-weight: bold;
-        }
+      .badge-category {
+        background: #ede9fe;
+        color: #6d28d9;
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-weight: bold;
+      }
 
-        .badge-category{
-            background: #ede9fe;
-            color: #6d28d9;
-            padding: 8px 14px;
-            border-radius: 30px;
-            font-weight: bold;
-        }
+      .price-text {
+        color: #16a34a;
+        font-weight: bold;
+        font-size: 16px;
+      }
 
-        .price-text{
-            color: #16a34a;
-            font-weight: bold;
-            font-size: 16px;
-        }
+      .admin-btn {
+        background: gold;
+        color: black;
+        font-weight: bold;
+        border: none;
+      }
 
-        .admin-btn{
-            background: gold;
-            color: black;
-            font-weight: bold;
-            border: none;
-        }
-
-        .admin-btn:hover{
-            background: #d4af37;
-            color: black;
-        }
-
+      .admin-btn:hover {
+        background: #d4af37;
+        color: black;
+      }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
 
-</head>
+  <body>
+    <div class="container py-5">
+      <div class="header-box shadow mb-4">
+        <div
+          class="d-flex justify-content-between align-items-center flex-wrap"
+        >
+          <div>
+            <h1 class="fw-bold mb-2">
+              <i class="bi bi-box-seam"></i>
+              បញ្ជីផលិតផល
+            </h1>
 
-<body>
+            <p class="mb-0">គ្រប់គ្រងផលិតផលរបស់អ្នកយ៉ាងងាយស្រួល</p>
+          </div>
 
-<div class="container py-5">
+          <!-- Buttons -->
+          <div class="mt-3 mt-md-0">
+            <a href="/add/" class="btn btn-light btn-custom">
+              <i class="bi bi-plus-circle"></i>
+              បន្ថែមផលិតផល
+            </a>
 
-    
-    <div class="header-box shadow mb-4">
-
-        <div class="d-flex justify-content-between align-items-center flex-wrap">
-
-            <div>
-                <h1 class="fw-bold mb-2">
-                    <i class="bi bi-box-seam"></i>
-                    បញ្ជីផលិតផល
-                </h1>
-
-                <p class="mb-0">
-                    គ្រប់គ្រងផលិតផលរបស់អ្នកយ៉ាងងាយស្រួល
-                </p>
-            </div>
-
-            <!-- Buttons -->
-            <div class="mt-3 mt-md-0">
-
-                <a href="/add/" class="btn btn-light btn-custom">
-                    <i class="bi bi-plus-circle"></i>
-                    បន្ថែមផលិតផល
-                </a>
-
-                <a href="/dashboard/" class="btn admin-btn btn-custom ms-2">
-                    <i class="bi bi-person-gear"></i>
-                    Admin
-                </a>
-
-            </div>
-
+            <a href="/dashboard/" class="btn admin-btn btn-custom ms-2">
+              <i class="bi bi-person-gear"></i>
+              Admin
+            </a>
+          </div>
         </div>
+      </div>
 
-    </div>
-
-    
-    <div class="card shadow-sm main-card">
-
+      <div class="card shadow-sm main-card">
         <div class="card-body p-4">
+          <div class="table-responsive">
+            <table class="table align-middle table-hover">
+              <thead>
+                <tr>
+                  <th>ល.រ</th>
+                  <th>ឈ្មោះផលិតផល</th>
+                  <th>ចំនួន</th>
+                  <th>តម្លៃ</th>
+                  <th>ប្រភេទ​ទំនិញ</th>
+                  <th>ក្រុមហ៊ុនកម្មសិទ្ធ</th>
+                  <th class="text-center">ផ្សេងៗ</th>
+                </tr>
+              </thead>
 
-            <div class="table-responsive">
+              <tbody>
+                {% for product in products %}
 
-                <table class="table align-middle table-hover">
+                <tr>
+                  <td>{{ forloop.counter }}</td>
 
-                    <thead>
-                        <tr>
-                            <th>ល.រ</th>
-                            <th>ឈ្មោះផលិតផល</th>
-                            <th>ចំនួន</th>
-                            <th>តម្លៃ</th>
-                            <th>ប្រភេទ​ទំនិញ</th>
-                            <th>ក្រុមហ៊ុនកម្មសិទ្ធ</th>
-                            <th class="text-center">ផ្សេងៗ</th>
-                        </tr>
-                    </thead>
+                  <td class="fw-semibold">{{ product.name }}</td>
 
-                    <tbody>
+                  <td>
+                    <span class="badge-qty"> {{ product.quantity }} </span>
+                  </td>
 
-                    {% for product in products %}
+                  <td>
+                    <span class="price-text"> ${{ product.price }} </span>
+                  </td>
 
-                        <tr>
+                  <td>
+                    <span class="badge-category"> {{ product.category }} </span>
+                  </td>
 
-                            <td>
-                                {{ forloop.counter }}
-                            </td>
+                  <td>{{ product.supplier }}</td>
 
-                            <td class="fw-semibold">
-                                {{ product.name }}
-                            </td>
+                  <td class="text-center">
+                    <a
+                      href="/edit/{{ product.id }}"
+                      class="btn btn-warning btn-sm btn-custom me-2"
+                    >
+                      <i class="bi bi-pencil-square"></i>
+                      កែប្រែ
+                    </a>
+                    <a
+                      href="#"
+                      class="btn btn-danger btn-sm btn-custom"
+                      onclick="deleteProduct('{{ product.id }}')"
+                    >
+                      <i class="bi bi-trash"></i>
 
-                            <td>
-                                <span class="badge-qty">
-                                    {{ product.quantity }}
-                                </span>
-                            </td>
+                      លុប
+                    </a>
+                  </td>
+                </tr>
 
-                            <td>
-                                <span class="price-text">
-                                    ${{ product.price }}
-                                </span>
-                            </td>
+                {% empty %}
 
-                            <td>
-                                <span class="badge-category">
-                                    {{ product.category }}
-                                </span>
-                            </td>
+                <tr>
+                  <td colspan="7" class="text-center py-5">
+                    <i class="bi bi-box display-3 text-muted"></i>
 
-                            <td>
-                                {{ product.supplier }}
-                            </td>
+                    <h4 class="mt-3 text-muted">មិនទាន់មានផលិតផលទេ</h4>
 
-                            <td class="text-center">
+                    <a href="/add/" class="btn btn-primary mt-3 btn-custom">
+                      បន្ថែមផលិតផលដំបូង
+                    </a>
+                  </td>
+                </tr>
 
-                                <a
-                                    href="/edit/{{ product.id }}"
-                                    class="btn btn-warning btn-sm btn-custom me-2"
-                                >
-                                    <i class="bi bi-pencil-square"></i>
-                                    កែប្រែ
-                                </a>
-
-                                <a
-                                    href="/delete/{{ product.id }}"
-                                    class="btn btn-danger btn-sm btn-custom"
-                                    onclick="return confirm('តើអ្នកពិតជាចង់លុបផលិតផលនេះមែនទេ?');"
-                                >
-                                    <i class="bi bi-trash"></i>
-                                    លុប
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                    {% empty %}
-
-                        <tr>
-
-                            <td colspan="7" class="text-center py-5">
-
-                                <i class="bi bi-box display-3 text-muted"></i>
-
-                                <h4 class="mt-3 text-muted">
-                                    មិនទាន់មានផលិតផលទេ
-                                </h4>
-
-                                <a
-                                    href="/add/"
-                                    class="btn btn-primary mt-3 btn-custom"
-                                >
-                                    បន្ថែមផលិតផលដំបូង
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                    {% endfor %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
-
+      </div>
     </div>
+    <script>
 
-</div>
+function deleteProduct(id){
 
-</body>
+    Swal.fire({
+
+        title: 'តើអ្នកពិតជាចង់លុបផលិតផលនេះមែនទេ?',
+
+        text: "លុបហើយយកមកវិញអត់បានហេណាព្រោះdevelop អត់ទាន់ចេះ",
+
+        icon: 'warning',
+
+        showCancelButton: true,
+
+        confirmButtonColor: '#d33',
+
+        cancelButtonColor: '#6c757d',
+
+        confirmButtonText: 'បាទ/ចា,លុបហូវ'
+
+    }).then((result) => {
+
+        if(result.isConfirmed){
+
+            window.location.href = '/delete/' + id + '/';
+
+        }
+
+    });
+
+}
+
+</script>
+  </body>
 </html>

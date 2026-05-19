@@ -6,6 +6,8 @@ from .forms import CategoryForm
 from .forms import SupplierForm
 from .forms import StockForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
 
 
 def product_list(request):
@@ -143,4 +145,20 @@ def stock_management(request):
     return render(request, 'stock.html', {
         'form': form,
         'message': message
+    })
+def register(request):
+
+    if request.method == 'POST':
+
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/login/')
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/register.html', {
+        'form': form
     })
